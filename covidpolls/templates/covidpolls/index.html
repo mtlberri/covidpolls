@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>COVID survey</title>
+</head>
+<body>
+
+<div class="container">
+    {% load static %}
+    <nav class="navbar navbar-light bg-light">
+        <img src="{% static "covidpolls/22024-covid-19_product-pg.svg" %}" width="200" height="75" class="d-inline-block align-top" alt="">
+        <h1>Outil de planification</h1>
+    </nav>
+    <br>
+    La reprise des services de garde éducatifs à l’enfance s’effectuera selon les recommandations des autorités de santé publique du Québec. Cet outil de planification n’est pas une entente de services de garde ou une autre forme de contrat. Il n’a pas de valeur juridique. Il ne constitue pas un engagement de la part du prestataire de services de garde à recevoir un enfant. Il ne constitue pas un engagement de la part du parent à confier son enfant au prestataire de services de garde ou à payer des frais de garde. Les renseignements qu’il contient sont donnés à titre indicatif seulement et demeurent sujets à changement.
+    <br>
+    <br>
+    <form action="{% url 'covidpolls:save_form_in_db' %}" method="post">
+        {% csrf_token %}
+        <b>Child</b>
+        <div class="form-group row">
+            <div class="col">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="First name" name="child_first_name" required>
+            </div>
+            <div class="col">
+                <label>Last Name</label>
+                <input type="text" class="form-control" placeholder="Last name" name="child_last_name" required>
+            </div>
+        </div>
+        <b>Parent #1</b>
+        <div class="form-group row">
+            <div class="col">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="First name" name="parent1_first_name" required>
+            </div>
+            <div class="col">
+                <label>Last Name</label>
+                <input type="text" class="form-control" placeholder="Last name" name="parent1_last_name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="parent1_email">Email address</label>
+            <input type="email" class="form-control" id="parent1_email" name="parent1_email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="parent1_phone">Phone number</label>
+            <input class="form-control" type="tel" value="(514)-555-5555" name="parent1_phone" id="parent1_phone" required>
+        </div>
+        <b>Do you want your child to come back as soon as possible to your daycare?<br></b>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="child_asap" id="child_asap_yes" value="Yes">
+            <label class="form-check-label" for="child_asap_yes">Yes</label><br>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="child_asap" id="child_asap_no" value="No">
+            <label class="form-check-label" for="child_asap_no">No</label><br><br>
+        </div>
+        <b>If you answered no, at what date would you like your children to come back?<br></b>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12" width="12">
+            <label for="date">Date</label>
+            <input class="form-control" type="date" id="date" name="date" placeholder="MM/DD/YYYY">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
