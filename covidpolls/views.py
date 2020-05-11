@@ -18,11 +18,20 @@ def save_form_in_db(request):
                       parent1_email_address=request.POST['parent1_email'],
                       parent1_phone=request.POST['parent1_phone'])
     parent1.save()
+
+    print('Date: ' + request.POST['date'])
+    if request.POST['date'] == '':
+        print('Date is empty, replace by standard date 2020-01-01')
+        date = '2020-01-01'
+    else:
+        print('Date is not empty and is:' + request.POST['date'])
+        date = request.POST['date']
+
     parent1.child_set.create(
         child_first_name=request.POST['child_first_name'],
         child_last_name=request.POST['child_last_name'],
         child_return_asap=request.POST['child_asap'] == 'Yes',
-        child_date_return=request.POST['date'],
+        child_date_return=date,
     )
     child_name = request.POST['child_first_name']
     return HttpResponseRedirect(reverse('covidpolls:confirmation', args=(child_name, )))
