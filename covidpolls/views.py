@@ -6,9 +6,9 @@ from .models import Child, Parent1
 
 
 def index(request):
-    list_of_children = get_list_or_404(Child)
-    context = {'list_of_children': list_of_children}
-    return render(request, 'covidpolls/index.html', context)
+    # list_of_children = get_list_or_404(Child)
+    # context = {'list_of_children': list_of_children}
+    return render(request, 'covidpolls/index.html')
 
 
 def save_form_in_db(request):
