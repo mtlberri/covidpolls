@@ -5,7 +5,6 @@ from . import views
 
 app_name = 'covidpolls'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('save_form_in_db/', views.save_form_in_db, name='save_form_in_db'),
-    path('<str:child_name>/confirmation/', views.confirmation, name='confirmation'),
+    path('', views.get_parent_preferences, name='get_parent_preferences'),
+    path('thanks/', views.thanks, name='thanks'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
