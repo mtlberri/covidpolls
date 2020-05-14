@@ -20,11 +20,34 @@
     La reprise des services de garde éducatifs à l’enfance s’effectuera selon les recommandations des autorités de santé publique du Québec. Cet outil de planification n’est pas une entente de services de garde ou une autre forme de contrat. Il n’a pas de valeur juridique. Il ne constitue pas un engagement de la part du prestataire de services de garde à recevoir un enfant. Il ne constitue pas un engagement de la part du parent à confier son enfant au prestataire de services de garde ou à payer des frais de garde. Les renseignements qu’il contient sont donnés à titre indicatif seulement et demeurent sujets à changement.
     <br>
     <br>
-    <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_table }}
-        <button type="submit" class="btn btn-primary">Submit</button><br><br>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post">
+                    {% csrf_token %}
+                    {% if form.subject.errors %}
+                    <ol role="alertdialog">
+                        {% for error in form.subject.errors %}
+                        <li role="alert"><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+
+                    {% for field in form %}
+                    <div class="fieldWrapper form-group" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+                      {{ field.label_tag }}{% if field.field.required %}<span class="required"> *</span>{% endif %}
+                      {{ field }}
+                      {% if field.help_text %}
+                      <p class="help">{{ field.help_text|safe}}</p>
+                      {% endif %}
+
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Submit</button><br><br>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Optional JavaScript -->
