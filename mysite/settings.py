@@ -74,21 +74,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-<<<<<<< HEAD
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'covidpollsdb',
-#         'USER': 'test_user_covidpollsdb',
-#         'PASSWORD': 'test',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-=======
 # Set the AWS RDS database configuration if in AWS environment, else set local development DB.
->>>>>>> dev
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
         'default': {
@@ -100,8 +86,6 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
-<<<<<<< HEAD
-=======
 else:
     DATABASES = {
         'default': {
@@ -113,7 +97,6 @@ else:
             'PORT': '5432',
         }
     }
->>>>>>> dev
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
