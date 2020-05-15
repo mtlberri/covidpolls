@@ -22,6 +22,11 @@
     <br>
     <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post">
         {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{  form.errors }}
+        </div>
+        {% endif %}
         <b>Child</b>
         <div class="form-group row">
             <div class="col">

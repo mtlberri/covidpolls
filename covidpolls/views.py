@@ -10,9 +10,13 @@ def get_parent_preferences(request):
     if request.method == 'POST':
         form = ParentChildPreferenceForm(request.POST)
         if form.is_valid():
+            print('Form is valid')
+            print(f'Date field value is :{form.cleaned_data["child_date_return"]}')
             # Save in the DB
             new_preference_form = form.save()
             return HttpResponseRedirect(reverse('covidpolls:thanks'))
+        else:
+            print(f'Form is not valid, errors:{form.errors}')
     # Else if method GET
     else:
         form = ParentChildPreferenceForm()
