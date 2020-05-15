@@ -10,7 +10,7 @@ class ParentChildPreference(models.Model):
     child_first_name = models.CharField(max_length=100, blank=False)
     child_last_name = models.CharField(max_length=100, blank=False)
     child_return_asap = models.BooleanField(blank=False)
-    child_date_return = models.DateField(blank=True)
+    child_date_return = models.DateField(blank=True )
 
     def __str__(self):
         return self.child_first_name + ' ' + self.child_last_name

@@ -20,25 +20,53 @@
     La reprise des services de garde éducatifs à l’enfance s’effectuera selon les recommandations des autorités de santé publique du Québec. Cet outil de planification n’est pas une entente de services de garde ou une autre forme de contrat. Il n’a pas de valeur juridique. Il ne constitue pas un engagement de la part du prestataire de services de garde à recevoir un enfant. Il ne constitue pas un engagement de la part du parent à confier son enfant au prestataire de services de garde ou à payer des frais de garde. Les renseignements qu’il contient sont donnés à titre indicatif seulement et demeurent sujets à changement.
     <br>
     <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post">
-                    {% csrf_token %}
-                    {% if form.subject.errors %}
-                    <ol role="alertdialog">
-                        {% for error in form.subject.errors %}
-                        <li role="alert"><strong>{{ error|escape }}</strong></li>
-                        {% endfor %}
-                    </ol>
-                    {% endif %}
-
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary">Submit</button><br><br>
-                </form>
+    <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post">
+        {% csrf_token %}
+        <b>Child</b>
+        <div class="form-group row">
+            <div class="col">
+                {{ form.child_first_name.label }}
+                {{ form.child_first_name }}
+            </div>
+            <div class="col">
+                {{ form.child_last_name.label }}
+                {{ form.child_last_name }}
             </div>
         </div>
-    </div>
+        <b>Parent</b>
+        <div class="form-group row">
+            <div class="col">
+                {{ form.parent_first_name.label }}
+                {{ form.parent_first_name }}
+            </div>
+            <div class="col">
+                {{ form.parent_last_name.label }}
+                {{ form.parent_last_name }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form.parent_email_address.label }}
+            {{ form.parent_email_address }}
+        </div>
+        <div class="form-group">
+            {{ form.parent_phone.label }}
+            {{ form.parent_phone }}
+        </div>
+        <b>Do you want your child to come back as soon as possible to your daycare?<br></b>
+        <div class="form-check">
+            {% for radio in form.child_return_asap %}
+                <label for="{{ radio.id_for_label }}">
+                {{ radio.choice_label }}
+                <span class="radio">{{ radio.tag }}</span>
+                </label>
+            {% endfor %}
+        </div>
+        <b>If you answered no, at what date would you like your children to come back?<br></b>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12" width="12">
+            {{ form.child_date_return }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
+    </form>
 </div>
 
 <!-- Optional JavaScript -->
