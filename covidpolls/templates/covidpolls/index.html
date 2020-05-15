@@ -52,18 +52,24 @@
             {{ form.parent_phone.label }}
             {{ form.parent_phone }}
         </div>
-        <b>Do you want your child to come back as soon as possible to your daycare?<br></b>
-        <div class="form-check">
-            {% for radio in form.child_return_asap %}
-                <label for="{{ radio.id_for_label }}">
+        Do you want your child to come back as soon as possible to your daycare?<br>
+        {% for radio in form.child_return_asap %}
+        <div class="form-group">
+            <div class="form-check">
+                {{ radio.tag }}
+                <label class="form-check-label" for="{{ radio.id_for_label }}">
                 {{ radio.choice_label }}
-                <span class="radio">{{ radio.tag }}</span>
                 </label>
+            </div>
             {% endfor %}
         </div>
-        <b>If you answered no, at what date would you like your children to come back?<br></b>
-        <div class="form-group col-md-6 col-sm-6 col-xs-12" width="12">
-            {{ form.child_date_return }}
+        If you answered no, at what date would you like your children to come back?<br>
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    {{ form.child_date_return }}
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button><br><br>
     </form>

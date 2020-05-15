@@ -31,6 +31,6 @@ class ParentChildPreferenceForm(forms.ModelForm):
                                                        'placeholder': 'First Name'}),
             'child_last_name': forms.TextInput(attrs={'class': 'form-control',
                                                        'placeholder': 'Last Name'}),
-            'child_return_asap': forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')], attrs={'class': 'form-control'}),
+            'child_return_asap': forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')], attrs={'class': 'form-check-input'}),
             'child_date_return': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
