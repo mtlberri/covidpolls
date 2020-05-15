@@ -1,8 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Parent1, Child
+from .models import ParentChildPreference
 
-admin.site.register(Parent1)
-admin.site.register(Child)
+admin.site.register(ParentChildPreference)
 

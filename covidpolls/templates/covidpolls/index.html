@@ -20,51 +20,61 @@
     La reprise des services de garde éducatifs à l’enfance s’effectuera selon les recommandations des autorités de santé publique du Québec. Cet outil de planification n’est pas une entente de services de garde ou une autre forme de contrat. Il n’a pas de valeur juridique. Il ne constitue pas un engagement de la part du prestataire de services de garde à recevoir un enfant. Il ne constitue pas un engagement de la part du parent à confier son enfant au prestataire de services de garde ou à payer des frais de garde. Les renseignements qu’il contient sont donnés à titre indicatif seulement et demeurent sujets à changement.
     <br>
     <br>
-    <form action="{% url 'covidpolls:save_form_in_db' %}" method="post">
+    <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post">
         {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{  form.errors }}
+        </div>
+        {% endif %}
         <b>Child</b>
         <div class="form-group row">
             <div class="col">
-                <label>First Name</label>
-                <input type="text" class="form-control" placeholder="First name" name="child_first_name" required>
+                {{ form.child_first_name.label }}
+                {{ form.child_first_name }}
             </div>
             <div class="col">
-                <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Last name" name="child_last_name" required>
+                {{ form.child_last_name.label }}
+                {{ form.child_last_name }}
             </div>
         </div>
-        <b>Parent #1</b>
+        <b>Parent</b>
         <div class="form-group row">
             <div class="col">
-                <label>First Name</label>
-                <input type="text" class="form-control" placeholder="First name" name="parent1_first_name" required>
+                {{ form.parent_first_name.label }}
+                {{ form.parent_first_name }}
             </div>
             <div class="col">
-                <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Last name" name="parent1_last_name" required>
+                {{ form.parent_last_name.label }}
+                {{ form.parent_last_name }}
             </div>
         </div>
         <div class="form-group">
-            <label for="parent1_email">Email address</label>
-            <input type="email" class="form-control" id="parent1_email" name="parent1_email" placeholder="name@example.com" required>
+            {{ form.parent_email_address.label }}
+            {{ form.parent_email_address }}
         </div>
         <div class="form-group">
-            <label for="parent1_phone">Phone number</label>
-            <input class="form-control" type="tel" value="(514)-555-5555" name="parent1_phone" id="parent1_phone" required>
+            {{ form.parent_phone.label }}
+            {{ form.parent_phone }}
         </div>
-        <b>Do you want your child to come back as soon as possible to your daycare?<br></b>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="child_asap" id="child_asap_yes" value="Yes">
-            <label class="form-check-label" for="child_asap_yes">Yes</label><br>
+        Do you want your child to come back as soon as possible to your daycare?<br>
+        {% for radio in form.child_return_asap %}
+        <div class="form-group">
+            <div class="form-check">
+                {{ radio.tag }}
+                <label class="form-check-label" for="{{ radio.id_for_label }}">
+                {{ radio.choice_label }}
+                </label>
+            </div>
+            {% endfor %}
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="child_asap" id="child_asap_no" value="No">
-            <label class="form-check-label" for="child_asap_no">No</label><br><br>
-        </div>
-        <b>If you answered no, at what date would you like your children to come back?<br></b>
-        <div class="form-group col-md-6 col-sm-6 col-xs-12" width="12">
-            <label for="date">Date</label>
-            <input class="form-control" type="date" id="date" name="date" placeholder="MM/DD/YYYY">
+        If you answered no, at what date would you like your children to come back?<br>
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    {{ form.child_date_return }}
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button><br><br>
     </form>
