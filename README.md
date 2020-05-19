@@ -1,29 +1,20 @@
 # COVID Poll Web App
 
-Web App built on Django framework to capture the needs in term of daycare comeback date.
-Integrated with a PostgreSQL Database.
+Web App built on Django framework to capture the needs in term of daycare comeback date after COVID.
+Deployed on AWS Elastic Beanstalk.
+Integrated with a PostgreSQL Database (AWS RDS).
 
-![CovidPoll](https://mtlberriawsbucket.s3.us-east-2.amazonaws.com/covidpolls/Covidpolls_Web_App_20200510.png)
+Available [online here](http://django-env.eba-dtvkttrq.us-east-1.elasticbeanstalk.com/covidpolls/)
+
+![CovidPoll](https://mtlberriawsbucket.s3.us-east-2.amazonaws.com/covidpolls/covpoll-web-app.png)
 
 ## Getting Started
 
-
-### Prerequisites
-
-Django.
-
-### Installing
-
-
+Dependencies provided in the `requirements.txt` file.
 
 ## Using
 
-
-
-
-## Built With
-
-
+Git clone the project, make sure to update the `settings.py` file with your ALLOWED_HOSTS and DATABASES configuration for your development environment.
 
 ## Author
 
