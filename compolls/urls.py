@@ -5,5 +5,5 @@ from . import views
 
 app_name = 'compolls'
 urlpatterns = [
-    path('', views.community_poll_view, name='community_poll_view'),
+    path('', views.compoll_question, name='community_poll_question'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

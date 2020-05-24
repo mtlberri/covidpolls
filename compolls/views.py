@@ -1,23 +1,20 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render
 from django.urls import reverse
+from .models import Question, Choice
 
 
-def community_poll_view(request):
+def compoll_question(request):
+    """View displaying a Question and associated Choices, and managing the Vote"""
     if request.method == 'POST':
-        form = ParentChildPreferenceForm(request.POST)
-        if form.is_valid():
-            print('Form is valid')
-            print(f'Date field value is :{form.cleaned_data["child_date_return"]}')
-            # Save in the DB
-            new_preference_form = form.save()
-            return HttpResponseRedirect(reverse('covidpolls:thanks'))
-        else:
-            print(f'Form is not valid, errors:{form.errors}')
+        pass
     # Else if method GET
     else:
-        form = ParentChildPreferenceForm()
-    context = {'form': form}
-    return render(request, 'covidpolls/index.html', context)
+        user = 'Joffrey'
+        question = Question.objects.get(pk=2)
+        choice_a = question.choice_set.filter(choice='A').get()
+        choice_b = question.choice_set.filter(choice='B').get()
+        context = {'question': question, 'choice_a': choice_a, 'choice_b': choice_b}
+    return render(request, 'compolls/question.html', context)
 
 
