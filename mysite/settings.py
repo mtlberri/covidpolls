@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['django-env.eba-dtvkttrq.us-east-1.elasticbeanstalk.com', '127.
 
 INSTALLED_APPS = [
     'covidpolls.apps.CovidpollsConfig',
+    'compolls.apps.CompollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
