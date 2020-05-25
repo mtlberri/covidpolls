@@ -18,7 +18,17 @@
     <h2>{{question.question_text}}
     <ul>
         <li>{{choice_a.choice_text}}</li>
+            <ul>
+                {% for voter in choice_a.voters.all %}
+                <li>{{voter}}</li>
+                {% endfor %}
+            </ul>
         <li>{{choice_b.choice_text}}</li>
+            <ul>
+                {% for voter in choice_b.voters.all %}
+                <li>{{voter}}</li>
+                {% endfor %}
+            </ul>
     </ul>
 </div>
 
