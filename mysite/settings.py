@@ -87,6 +87,7 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+    STATIC_ROOT = '/opt/python/current/app/static'
 else:
     DATABASES = {
         'default': {
@@ -98,6 +99,7 @@ else:
             'PORT': '5432',
         }
     }
+    STATIC_ROOT = 'static'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -136,4 +138,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/opt/python/current/app/static'
