@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Question, Choice
+from django.http import JsonResponse
 
 
 def compoll_question(request):
@@ -20,4 +21,12 @@ def compoll_question(request):
         context = {'question': question, 'choice_a': choice_a, 'choice_b': choice_b}
     return render(request, 'compolls/question.html', context)
 
+
+def manage_vote(request):
+    # choice = request.get('choice')
+    # print('user choice:' + choice)
+    data = {
+        'test_key': 'test_value'
+    }
+    return JsonResponse(data)
 

@@ -1,7 +1,13 @@
-h2 {
+h2.question {
     text-align: center;
 }
 
-img.question {
-    display: inline-block;
+img.choice-image {
+    height: auto;
+    max-width: 75%;
+}
+
+div.choice-block {
+    position: absolute;
+    bottom: 0;
 }
