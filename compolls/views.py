@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from .models import Question, Choice
 from django.http import JsonResponse
+import json
 
 
 def compoll_question(request):
@@ -23,10 +24,11 @@ def compoll_question(request):
 
 
 def manage_vote(request):
-    # choice = request.get('choice')
-    # print('user choice:' + choice)
+    """View managing the vote actions via AJAX"""
+    body = json.loads(request.body)
+    print('choice: ' + body['choice'])
     data = {
-        'test_key': 'test_value'
+        'returned_test_key': 'returned_test_value'
     }
     return JsonResponse(data)
 
