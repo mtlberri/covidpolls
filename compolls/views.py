@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import Question, Choice
+from .models import Question, Choice, User
 from django.http import JsonResponse
 import json
 
@@ -26,9 +26,20 @@ def compoll_question(request):
 def manage_vote(request):
     """View managing the vote actions via AJAX"""
     body = json.loads(request.body)
-    print('choice: ' + body['choice'])
-    data = {
-        'returned_test_key': 'returned_test_value'
+    print('user :' + body['user'])
+    print('choice_id: ' + body['choice_id'])
+    user_name = body['user']
+    try:
+        choice_id = int(body['choice_id'])
+    except:
+        print('Could not cast the choice_id into integer type')
+    # Save the user vote for that choice in the DB
+    user, _ = User.objects.get_or_create(name=user_name)
+    choice = Choice.objects.get(pk=choice_id)
+    choice.voters.add(user)
+    returned_data = {
+        'user': str(user),
+        'choice_id': choice.id,
     }
-    return JsonResponse(data)
+    return JsonResponse(returned_data)
 

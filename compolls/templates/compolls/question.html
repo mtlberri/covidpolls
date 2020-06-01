@@ -28,13 +28,13 @@
         <div class="col" align="center">
           <img src="{% static "compolls/elon_musk.jpg" %}" class="choice-image rounded"><br>
           {{choice_a.choice_text}}
-          <br><button id="button-choice-a" class="btn btn-primary">Vote</button><br><br>
+          <br><button id="{{ choice_a.id }}" onclick="ajax_vote(this.id)" class="btn btn-primary">Vote</button><br><br>
         </div>
         <div class="col" align="center">
           <div class="choice-block">
             <img src="{% static "compolls/steve_jobs.jpg" %}" class="choice-image rounded"><br>
             {{choice_b.choice_text}}
-            <br><button id="button-choice-b" class="btn btn-primary">Vote</button><br><br>
+            <br><button id="{{ choice_b.id }}" onclick="ajax_vote(this.id)" class="btn btn-primary">Vote</button><br><br>
           </div>
         </div>
       </div>

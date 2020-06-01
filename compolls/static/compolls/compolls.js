@@ -1,16 +1,19 @@
 console.log("Hello");
 
-document.getElementById("button-choice-a").addEventListener('click', () => {
-    console.log("you clicked A");
-    console.log(event.target.id);
+var user = 'Hotman'
+
+function ajax_vote(id)  {
+
+    console.log(`you clicked ${id}`);
 
     var csrftoken = Cookies.get('csrftoken');
 
-    const user_data = {
-        choice: 'A',
+    const user_vote_data = {
+        user: user,
+        choice_id: id,
     };
 
-    console.log(JSON.stringify(user_data));
+    console.log(JSON.stringify(user_vote_data));
 
     // fetch('ajax/manage_vote')
     // .then(response => response.json())
@@ -22,9 +25,10 @@ document.getElementById("button-choice-a").addEventListener('click', () => {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrftoken
         },
-        body: JSON.stringify(user_data),
+        body: JSON.stringify(user_vote_data),
     })
     .then(response => response.json())
     .then(data => console.log(data));
 
-});
+};
+
