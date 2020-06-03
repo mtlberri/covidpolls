@@ -15,52 +15,80 @@
 
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Community Polls</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <br>
+  <form>
+    <div class="form-group">
+      <label for="name-input">Enter the name you want to use for voting</label>
+      <input type="text" class="form-control" id="name-input" placeholder="Name" aria-label="Name"
+        aria-describedby="button-addon2" required>
+    </div>
+    <button class="btn btn-dark" id="btn-save-name">Save</button>
+  </form>
+  <br>
+  <span id="chosen-name"></span>
+  <br>
+  <br>
+  <br>
+
+  <h2 class="question">{{question.question_text}}</h2>
   <div class="container">
-    <nav class="navbar navbar-light bg-light">
-      <h1>Question</h1>
-    </nav>
-    <br>
-    <h2 class="question">{{question.question_text}}</h2>
-    <br>
-    <br>
-    <div class="container">
-      <div class="row row-cols-2">
-        <div class="col" align="center">
-          <img src="{% static "compolls/elon_musk.jpg" %}" class="choice-image rounded"><br>
-          {{choice_a.choice_text}}
-          <br><button id="{{ choice_a.id }}" onclick="ajax_vote(this.id)" class="btn btn-primary">Vote</button><br><br>
-        </div>
-        <div class="col" align="center">
-          <div class="choice-block">
-            <img src="{% static "compolls/steve_jobs.jpg" %}" class="choice-image rounded"><br>
-            {{choice_b.choice_text}}
-            <br><button id="{{ choice_b.id }}" onclick="ajax_vote(this.id)" class="btn btn-primary">Vote</button><br><br>
-          </div>
+    <div class="row row-cols-2">
+      <div class="col" align="center">
+        <img src="{% static "compolls/elon_musk.jpg" %}" class="choice-image rounded"><br>
+        {{choice_a.choice_text}}
+        <br>
+        <button id="{{ choice_a.id }}" onclick="ajax_vote(this.id)" class="btn btn-dark">Vote</button><br><br>
+      </div>
+      <div class="col" align="center">
+        <div class="choice-block">
+          <img src="{% static "compolls/steve_jobs.jpg" %}" class="choice-image rounded"><br>
+          {{choice_b.choice_text}}
+          <br>
+          <button id="{{ choice_b.id }}" onclick="ajax_vote(this.id)" class="btn btn-dark">Vote</button><br><br>
         </div>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    {% block content %}
-    {% endblock content %}
-    <ul>
-      <li>{{choice_a.choice_text}}</li>
-      <!-- <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post"> -->
-
-      <ul>
-        {% for voter in choice_a.voters.all %}
-        <li>{{voter}}</li>
-        {% endfor %}
-      </ul>
-      <li>{{choice_b.choice_text}}</li>
-      <ul>
-        {% for voter in choice_b.voters.all %}
-        <li>{{voter}}</li>
-        {% endfor %}
-      </ul>
-    </ul>
   </div>
+  <br>
+  <br>
+  <br>
+  {% block content %}
+  {% endblock content %}
+  <ul>
+    <li>{{choice_a.choice_text}}</li>
+    <!-- <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post"> -->
+
+    <ul>
+      {% for voter in choice_a.voters.all %}
+      <li>{{voter}}</li>
+      {% endfor %}
+    </ul>
+    <li>{{choice_b.choice_text}}</li>
+    <ul>
+      {% for voter in choice_b.voters.all %}
+      <li>{{voter}}</li>
+      {% endfor %}
+    </ul>
+  </ul>
+
+</div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
