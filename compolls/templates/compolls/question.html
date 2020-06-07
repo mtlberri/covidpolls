@@ -64,13 +64,19 @@
           <button id="{{ choice_b.id }}" onclick="ajax_vote(this.id)" class="btn btn-dark">Vote</button><br><br>
         </div>
       </div>
+      <div class="col" align="center">
+        List of voters A: 
+        <ul id="list_choice_a"></ul>
+      </div>
+      <div class="col" align="center">
+        List of voters B: 
+        <ul id="list_choice_b"></ul>
+      </div>
     </div>
   </div>
   <br>
   <br>
   <br>
-  {% block content %}
-  {% endblock content %}
   <ul>
     <li>{{choice_a.choice_text}}</li>
     <!-- <form action="{% url 'covidpolls:get_parent_preferences' %}" method="post"> -->

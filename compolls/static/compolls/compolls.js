@@ -5,7 +5,7 @@ var user = '';
 function ajax_vote(id)  {
 
     console.log(`you clicked ${id}`);
-
+    
     if (user != '') {
         var csrftoken = Cookies.get('csrftoken');
 
@@ -28,7 +28,28 @@ function ajax_vote(id)  {
         .then(response => response.json())
         .then(data => {
             console.log('data being received back from server:');
-            console.log(data)
+            console.log(data);
+
+            // Fill the list of voters A
+            var ul = document.getElementById("list_choice_a");
+            var voters_a_length = data.voters.voters_for_a.length;
+            for (var i = 0; i < voters_a_length; i++) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(data.voters.voters_for_a[i]));
+                ul.appendChild(li);
+            }
+            // Fill the list of voters B
+            var ul = document.getElementById("list_choice_b");
+            var voters_b_length = data.voters.voters_for_b.length;
+            for (var i = 0; i < voters_b_length; i++) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(data.voters.voters_for_b[i]));
+                ul.appendChild(li);
+            }
+
+            // Change the button style after vote completed
+            document.getElementById(id).className = "btn btn-success";
+            document.getElementById(id).innerText = "Voted";
         });
     } else {
         console.log('cannot vote if username empty')
